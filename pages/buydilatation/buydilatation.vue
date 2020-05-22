@@ -135,19 +135,21 @@
 				}
 			},
 			addimgclick: function() {
-				this.buytime++;
-				this.totalmny = this.buytime * this.price * this.applynum * 0.01;
-				// uni.showModal({
-				// 	title: '提示',
-				// 	content: '初始化：'+ this.totalmny + '次数：'+ this.buytime + '单价：'+ this.price,
-				// 	showCancel: false,
-				// 	confirmColor: '#8d7d5c',
-				// 	success: function(res) {
-				// 		if (res.confirm) {
-				// 			uni.hideToast();
-				// 		}
-				// 	}
-				// });
+				if (this.buytime < 12) {
+					this.buytime++;
+					this.totalmny = this.buytime * this.price * this.applynum * 0.01;
+					// uni.showModal({
+					// 	title: '提示',
+					// 	content: '初始化：'+ this.totalmny + '次数：'+ this.buytime + '单价：'+ this.price,
+					// 	showCancel: false,
+					// 	confirmColor: '#8d7d5c',
+					// 	success: function(res) {
+					// 		if (res.confirm) {
+					// 			uni.hideToast();
+					// 		}
+					// 	}
+					// });
+				}
 			},
 			addimg_aclick: function() {
 				if (this.applynum < 20) {
