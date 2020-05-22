@@ -71,7 +71,7 @@
 						this.infoMap = res.data.msg;
 						this.price = this.infoMap['4'].amount;
 						this.goodsCode = this.infoMap['4'].goodsCode;
-						this.totalmny = this.buytime * this.price * this.applynum * 0.01;
+						this.totalmny = this.buytime * this.price * 0.01;
 						// uni.showModal({
 						// 	title: '提示',
 						// 	content: '初始化：'+ this.totalmny + '次数：'+ this.buytime + '单价：'+ this.price,
@@ -112,7 +112,7 @@
 			subimgclick: function() {
 				if (this.buytime > 1) {
 					this.buytime--;
-					this.totalmny = this.buytime * this.price * this.applynum * 0.01;
+					this.totalmny = this.buytime * this.price * 0.01;
 					// uni.showModal({
 					// 	title: '提示',
 					// 	content: '初始化：'+ this.totalmny + '次数：'+ this.buytime + '单价：'+ this.price,
@@ -131,13 +131,13 @@
 					this.applynum--;
 					this.price = this.getPrice(this.applynum + "");
 					this.goodsCode = this.getGoodsCode(this.applynum + "")
-					this.totalmny = this.buytime * this.price * this.applynum * 0.01;
+					this.totalmny = this.buytime * this.price * 0.01;
 				}
 			},
 			addimgclick: function() {
 				if (this.buytime < 12) {
 					this.buytime++;
-					this.totalmny = this.buytime * this.price * this.applynum * 0.01;
+					this.totalmny = this.buytime * this.price * 0.01;
 					// uni.showModal({
 					// 	title: '提示',
 					// 	content: '初始化：'+ this.totalmny + '次数：'+ this.buytime + '单价：'+ this.price,
@@ -156,7 +156,7 @@
 					this.applynum++;
 					this.price = this.getPrice(this.applynum + "");
 					this.goodsCode = this.getGoodsCode(this.applynum + "")
-					this.totalmny = this.buytime * this.price * this.applynum * 0.01;
+					this.totalmny = this.buytime * this.price * 0.01;
 				}
 			},
 			wechatpayclick: function() {
@@ -176,7 +176,7 @@
 					method: 'POST',
 					data: {
 						"goodsCode": this.goodsCode,
-						"goodsCont": this.applynum,
+						"goodsCont": this.buytime,
 						"userKey": this.idortel,
 						"openId": this.openid
 					},
