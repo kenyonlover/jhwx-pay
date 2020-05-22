@@ -1,0 +1,62 @@
+{
+	"pages": [{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/buydilatation/buydilatation",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "购买尊享扩容卡"
+			}
+		},
+		{
+			"path": "pages/buycarnival/buycarnival",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "购买嘉年华次卡"
+			}
+		},
+		{
+			"path": "pages/querymaster/querymaster",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "查找大师"
+			}
+		},
+		{
+			"path": "pages/buymaster/buymaster",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "购买大师卡"
+			}
+		},
+		{
+			"path": "pages/queryteacher/queryteacher",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "查找老师"
+			}
+		},
+		{
+			"path": "pages/buyteacher/buyteacher",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "购买老师卡"
+			}
+		}, {
+			"path": "pages/catalog/catalog",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "京华象棋",
+		"navigationBarBackgroundColor": "#a69573",
+		"backgroundColor": "#9c8c6c"
+	}
+}
