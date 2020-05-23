@@ -65,6 +65,12 @@
 						this.price = res.data.msg.amount;
 						this.goodsCode = res.data.msg.goodsCode;
 						this.totalmny = this.buytime * this.price * 0.01;
+						if (this.isIphone()) {
+							uni.showToast({
+								title: '购买老师卡：' + this.buytime + '个月',
+								icon: "none"
+							});
+						}
 					} else {
 						uni.showToast({
 							title: res.data.msg,
@@ -81,17 +87,31 @@
 				if (this.buytime > 1) {
 					this.buytime--;
 					this.totalmny = this.buytime * this.price * 0.01;
+					if (this.isIphone()) {
+						uni.showToast({
+							title: '购买老师卡：' + this.buytime + '个月',
+							icon: "none"
+						});
+					}
 				}
 			},
 			addimgclick: function() {
-				this.buytime++;
-				this.totalmny = this.buytime * this.price * 0.01;
+				if (this.buytime < 12) {
+					this.buytime++;
+					this.totalmny = this.buytime * this.price * 0.01;
+					if (this.isIphone()) {
+						uni.showToast({
+							title: '购买老师卡：' + this.buytime + '个月',
+							icon: "none"
+						});
+					}
+				}
 			},
 			wechatpayclick: function() {
 				if (this.openid == undefined || this.openid == '' || this.openid.length == 0) {
 					window.location.replace(location.origin + location.pathname);
 				}
-				if(this.idortel == '' || this.idortel.length == 0){
+				if (this.idortel == '' || this.idortel.length == 0) {
 					uni.showToast({
 						title: 'ID或者手机号不能为空，请填写',
 						icon: "none"
@@ -104,7 +124,7 @@
 					method: 'POST',
 					data: {
 						"goodsCode": this.goodsCode,
-						"goodsCont": 1,
+						"goodsCont": this.buytime,
 						"userKey": this.idortel,
 						"openId": this.openid
 					},

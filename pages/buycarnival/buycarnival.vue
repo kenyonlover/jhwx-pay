@@ -55,6 +55,12 @@
 						this.starttime = res.data.msg.beginTime.substr(0, 10);
 						this.endtime = res.data.msg.endTime.substr(0, 10);
 						this.goodsCode = res.data.msg.goodsCode;
+						if (this.isIphone()) {
+							uni.showToast({
+								title: '购买嘉年华卡',
+								icon: "none"
+							});
+						}
 					} else {
 						uni.showToast({
 							title: res.data.msg,

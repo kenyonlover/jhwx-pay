@@ -83,6 +83,12 @@
 						// 		}
 						// 	}
 						// });
+						if (this.isIphone()) {
+							uni.showToast({
+								title: '购买扩容卡：' + this.buytime + '个月',
+								icon: "none"
+							});
+						}
 					} else {
 						uni.showToast({
 							title: res.data.msg,
@@ -124,6 +130,12 @@
 					// 		}
 					// 	}
 					// });
+					if (this.isIphone()) {
+						uni.showToast({
+							title: '购买扩容卡：' + this.buytime + '个月',
+							icon: "none"
+						});
+					}
 				}
 			},
 			subimg_aclick: function() {
@@ -132,6 +144,12 @@
 					this.price = this.getPrice(this.applynum + "");
 					this.goodsCode = this.getGoodsCode(this.applynum + "")
 					this.totalmny = this.buytime * this.price * 0.01;
+					if (this.isIphone()) {
+						uni.showToast({
+							title: '购买' + this.applynum + '人扩容卡',
+							icon: "none"
+						});
+					}
 				}
 			},
 			addimgclick: function() {
@@ -149,6 +167,12 @@
 					// 		}
 					// 	}
 					// });
+					if (this.isIphone()) {
+						uni.showToast({
+							title: '购买扩容卡：' + this.buytime + '个月',
+							icon: "none"
+						});
+					}
 				}
 			},
 			addimg_aclick: function() {
@@ -157,13 +181,19 @@
 					this.price = this.getPrice(this.applynum + "");
 					this.goodsCode = this.getGoodsCode(this.applynum + "")
 					this.totalmny = this.buytime * this.price * 0.01;
+					if (this.isIphone()) {
+						uni.showToast({
+							title: '购买' + this.applynum + '人扩容卡',
+							icon: "none"
+						});
+					}
 				}
 			},
 			wechatpayclick: function() {
 				if (this.openid == undefined || this.openid == '' || this.openid.length == 0) {
 					window.location.replace(location.origin + location.pathname);
 				}
-				if(this.idortel == '' || this.idortel.length == 0){
+				if (this.idortel == '' || this.idortel.length == 0) {
 					uni.showToast({
 						title: 'ID或者手机号不能为空，请填写',
 						icon: "none"
