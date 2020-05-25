@@ -13,17 +13,12 @@
 						<input class="uni-input inpid" v-model="idortel" />
 					</view>
 					<view class="uni-form-item uni-column">
-						<!-- <text class="aplnumcls_a">申请数量</text>
-						<image class="subimg_a" src="../../static/img/-.png" mode="" @click="subimg_aclick"></image>
-						<text class="applynumcls_a">{{applynum}}</text>
-						<image class="addimg_a" src="../../static/img/+.png" mode="" @click="addimg_aclick"></image>
-						<text class="peoplenum_a">人</text> -->
 						<view class="uni-list applynumpicker">
 							<view class="uni-list-cell">
 								<view class="uni-list-cell-left">
 									申请数量
 								</view>
-								<view class="uni-list-cell-db">
+								<view class="uni-list-cell-db picker_change">
 									<picker @change="bindApplynumPickerChange" :value="index" :range="applynumArray">
 										<view class="uni-input">{{applynum}}</view>
 									</picker>
@@ -35,16 +30,12 @@
 						</view>
 					</view>
 					<view class="uni-form-item uni-column">
-						<!-- <text class="bncls">购买时长</text> -->
-						<!-- <image class="subimg" src="../../static/img/-.png" mode="" @click="subimgclick"></image>
-						<text class="buttimecls">{{buytime}}</text>
-						<image class="addimg" src="../../static/img/+.png" mode="" @click="addimgclick"></image> -->
 						<view class="uni-list buytimepicker">
 							<view class="uni-list-cell">
 								<view class="uni-list-cell-left">
 									购买时长
 								</view>
-								<view class="uni-list-cell-db">
+								<view class="uni-list-cell-db picker_change">
 									<picker @change="bindPickerChange" :value="index" :range="array">
 										<view class="uni-input">{{buytime}}</view>
 									</picker>
@@ -54,7 +45,6 @@
 								</view>
 							</view>
 						</view>
-						<!-- <text class="timeunit">月</text> -->
 					</view>
 					<view class="uni-form-item uni-column userknowbox">
 						<text class="userknow">用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知</text>
@@ -104,20 +94,9 @@
 						this.price = this.infoMap['4'].amount;
 						this.goodsCode = this.infoMap['4'].goodsCode;
 						this.totalmny = this.buytime * this.price * 0.01;
-						// uni.showModal({
-						// 	title: '提示',
-						// 	content: '初始化：'+ this.totalmny + '次数：'+ this.buytime + '单价：'+ this.price,
-						// 	showCancel: false,
-						// 	confirmColor: '#8d7d5c',
-						// 	success: function(res) {
-						// 		if (res.confirm) {
-						// 			uni.hideToast();
-						// 		}
-						// 	}
-						// });
 						if (this.isIphone()) {
 							uni.showToast({
-								title: '购买扩容卡：' + this.buytime + '个月',
+								title: '购买' + this.applynum + '人扩容卡：' + this.buytime + '个月',
 								icon: "none"
 							});
 						}
@@ -156,80 +135,6 @@
 				this.price = this.getPrice(this.applynum + "");
 				this.goodsCode = this.getGoodsCode(this.applynum + "")
 				this.totalmny = this.buytime * this.price * 0.01;
-			},
-			subimgclick: function() {
-				if (this.buytime > 1) {
-					this.buytime--;
-					this.totalmny = this.buytime * this.price * 0.01;
-					// uni.showModal({
-					// 	title: '提示',
-					// 	content: '初始化：'+ this.totalmny + '次数：'+ this.buytime + '单价：'+ this.price,
-					// 	showCancel: false,
-					// 	confirmColor: '#8d7d5c',
-					// 	success: function(res) {
-					// 		if (res.confirm) {
-					// 			uni.hideToast();
-					// 		}
-					// 	}
-					// });
-					if (this.isIphone()) {
-						uni.showToast({
-							title: '购买扩容卡：' + this.buytime + '个月',
-							icon: "none"
-						});
-					}
-				}
-			},
-			subimg_aclick: function() {
-				if (this.applynum > 4) {
-					this.applynum--;
-					this.price = this.getPrice(this.applynum + "");
-					this.goodsCode = this.getGoodsCode(this.applynum + "")
-					this.totalmny = this.buytime * this.price * 0.01;
-					if (this.isIphone()) {
-						uni.showToast({
-							title: '购买' + this.applynum + '人扩容卡',
-							icon: "none"
-						});
-					}
-				}
-			},
-			addimgclick: function() {
-				if (this.buytime < 12) {
-					this.buytime++;
-					this.totalmny = this.buytime * this.price * 0.01;
-					// uni.showModal({
-					// 	title: '提示',
-					// 	content: '初始化：'+ this.totalmny + '次数：'+ this.buytime + '单价：'+ this.price,
-					// 	showCancel: false,
-					// 	confirmColor: '#8d7d5c',
-					// 	success: function(res) {
-					// 		if (res.confirm) {
-					// 			uni.hideToast();
-					// 		}
-					// 	}
-					// });
-					if (this.isIphone()) {
-						uni.showToast({
-							title: '购买扩容卡：' + this.buytime + '个月',
-							icon: "none"
-						});
-					}
-				}
-			},
-			addimg_aclick: function() {
-				if (this.applynum < 20) {
-					this.applynum++;
-					this.price = this.getPrice(this.applynum + "");
-					this.goodsCode = this.getGoodsCode(this.applynum + "")
-					this.totalmny = this.buytime * this.price * 0.01;
-					if (this.isIphone()) {
-						uni.showToast({
-							title: '购买' + this.applynum + '人扩容卡',
-							icon: "none"
-						});
-					}
-				}
 			},
 			wechatpayclick: function() {
 				if (this.openid == undefined || this.openid == '' || this.openid.length == 0) {
@@ -330,70 +235,6 @@
 </script>
 
 <style>
-	.aplnumcls_a {
-		top: 15rpx;
-		position: relative;
-	}
-
-	.subimg_a {
-		top: 25rpx;
-		left: 50rpx;
-		width: 50rpx;
-		height: 50rpx;
-		position: relative;
-	}
-
-	.applynumcls_a {
-		top: 15rpx;
-		position: relative;
-		left: 75rpx;
-	}
-
-	.addimg_a {
-		top: 25rpx;
-		left: 100rpx;
-		width: 50rpx;
-		height: 50rpx;
-	}
-
-	.peoplenum_a {
-		position: relative;
-		left: 150rpx;
-		top: 15rpx;
-	}
-
-	.bncls {
-		top: 50rpx;
-		position: relative;
-	}
-
-	.subimg {
-		top: 60rpx;
-		left: 50rpx;
-		width: 50rpx;
-		height: 50rpx;
-		position: relative;
-	}
-
-	.buttimecls {
-		position: relative;
-		left: 75rpx;
-		top: 50rpx;
-	}
-
-	.addimg {
-		top: 60rpx;
-		left: 100rpx;
-		width: 50rpx;
-		height: 50rpx;
-	}
-
-	.timeunit {
-		position: relative;
-		left: 150rpx;
-		top: 50rpx;
-	}
-
 	.goldcardbox {
 		position: relative;
 		color: #d2c7ab;

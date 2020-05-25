@@ -77,7 +77,7 @@
 				if (this.openid == undefined || this.openid == '' || this.openid.length == 0) {
 					window.location.replace(location.origin + location.pathname);
 				}
-				if(this.idortel == '' || this.idortel.length == 0){
+				if (this.idortel == '' || this.idortel.length == 0) {
 					uni.showToast({
 						title: 'ID或者手机号不能为空，请填写',
 						icon: "none"
@@ -196,7 +196,7 @@
 
 	.moneytip {
 		position: relative;
-		top: 365rpx;
+		top: 440rpx;
 		left: 120rpx;
 		color: #8d7d5c;
 		font-size: 30rpx;
@@ -205,16 +205,16 @@
 	.moneynum {
 		position: relative;
 		width: 40rpx;
-		top: 365rpx;
+		top: 440rpx;
 		left: 160rpx;
 		color: #8d7d5c;
 		font-size: 40rpx;
 		line-height: 40rpx;
 	}
-	
+
 	.moneyunit {
 		position: relative;
-		top: 365rpx;
+		top: 440rpx;
 		left: 200rpx;
 		color: #8d7d5c;
 		font-size: 30rpx;
@@ -223,7 +223,7 @@
 	.wechatpay {
 		width: 270rpx;
 		height: 75rpx;
-		top: 415rpx;
+		top: 490rpx;
 		left: 130rpx;
 	}
 </style>

@@ -13,11 +13,21 @@
 						<input class="uni-input inpid" v-model="idortel" />
 					</view>
 					<view class="uni-form-item uni-column">
-						<text class="bncls">购买时长</text>
-						<image class="subimg" src="../../static/img/-.png" mode="" @click="subimgclick"></image>
-						<text class="buttimecls">{{buytime}}</text>
-						<image class="addimg" src="../../static/img/+.png" mode="" @click="addimgclick"></image>
-						<text class="timeunit">月</text>
+						<view class="uni-list buytimepicker">
+							<view class="uni-list-cell">
+								<view class="uni-list-cell-left">
+									购买时长
+								</view>
+								<view class="uni-list-cell-db picker_change">
+									<picker @change="bindPickerChange" :value="index" :range="array">
+										<view class="uni-input">{{buytime}}</view>
+									</picker>
+								</view>
+								<view class="uni-list-cell-left">
+									月
+								</view>
+							</view>
+						</view>
 					</view>
 					<view class="uni-form-item uni-column userknowbox">
 						<text class="userknow">用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知</text>
@@ -49,7 +59,8 @@
 				goodsCode: '',
 				idortel: '',
 				openid: '',
-				totalmny: 0
+				totalmny: 0,
+				array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 			}
 		},
 		onLoad: function(e) {
@@ -83,29 +94,9 @@
 			});
 		},
 		methods: {
-			subimgclick: function() {
-				if (this.buytime > 1) {
-					this.buytime--;
-					this.totalmny = this.buytime * this.price * 0.01;
-					if (this.isIphone()) {
-						uni.showToast({
-							title: '购买老师卡：' + this.buytime + '个月',
-							icon: "none"
-						});
-					}
-				}
-			},
-			addimgclick: function() {
-				if (this.buytime < 12) {
-					this.buytime++;
-					this.totalmny = this.buytime * this.price * 0.01;
-					if (this.isIphone()) {
-						uni.showToast({
-							title: '购买老师卡：' + this.buytime + '个月',
-							icon: "none"
-						});
-					}
-				}
+			bindPickerChange: function(e) {
+				this.buytime = this.array[e.target.value];
+				this.totalmny = this.buytime * this.price * 0.01;
 			},
 			wechatpayclick: function() {
 				if (this.openid == undefined || this.openid == '' || this.openid.length == 0) {
@@ -206,45 +197,43 @@
 </script>
 
 <style>
-	.bncls {
-		top: 15rpx;
+	.userknow {
 		position: relative;
+		top: 180rpx;
+		color: #8d7d5c;
+		font-size: 20rpx;
 	}
 
-	.subimg {
-		top: 25rpx;
-		left: 50rpx;
-		width: 50rpx;
-		height: 50rpx;
+	.moneytip {
 		position: relative;
+		top: 350rpx;
+		left: 130rpx;
+		color: #8d7d5c;
+		font-size: 30rpx;
 	}
 
-	.buttimecls {
-		top: 15rpx;
+	.moneynum {
 		position: relative;
-		left: 75rpx;
+		width: 40rpx;
+		top: 350rpx;
+		left: 160rpx;
+		color: #8d7d5c;
+		font-size: 40rpx;
+		line-height: 40rpx;
 	}
 
-	.addimg {
-		top: 25rpx;
-		left: 100rpx;
-		width: 50rpx;
-		height: 50rpx;
-	}
-
-	.timeunit {
+	.moneyunit {
 		position: relative;
-		left: 150rpx;
-		top: 15rpx;
+		top: 350rpx;
+		left: 200rpx;
+		color: #8d7d5c;
+		font-size: 30rpx;
 	}
 
-	.subbtn {
-		top: 100rpx;
-		left: -20rpx;
-		width: 160rpx;
-		height: 70rpx;
-		background: #6a5e48;
-		color: #D8CEB5;
-		line-height: 70rpx;
+	.wechatpay {
+		width: 270rpx;
+		height: 75rpx;
+		top: 400rpx;
+		left: 130rpx;
 	}
 </style>
