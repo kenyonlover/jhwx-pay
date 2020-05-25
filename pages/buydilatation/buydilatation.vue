@@ -13,18 +13,48 @@
 						<input class="uni-input inpid" v-model="idortel" />
 					</view>
 					<view class="uni-form-item uni-column">
-						<text class="aplnumcls_a">申请数量</text>
+						<!-- <text class="aplnumcls_a">申请数量</text>
 						<image class="subimg_a" src="../../static/img/-.png" mode="" @click="subimg_aclick"></image>
 						<text class="applynumcls_a">{{applynum}}</text>
 						<image class="addimg_a" src="../../static/img/+.png" mode="" @click="addimg_aclick"></image>
-						<text class="peoplenum_a">人</text>
+						<text class="peoplenum_a">人</text> -->
+						<view class="uni-list applynumpicker">
+							<view class="uni-list-cell">
+								<view class="uni-list-cell-left">
+									申请数量
+								</view>
+								<view class="uni-list-cell-db">
+									<picker @change="bindApplynumPickerChange" :value="index" :range="applynumArray">
+										<view class="uni-input">{{applynum}}</view>
+									</picker>
+								</view>
+								<view class="uni-list-cell-left">
+									人
+								</view>
+							</view>
+						</view>
 					</view>
 					<view class="uni-form-item uni-column">
-						<text class="bncls">购买时长</text>
-						<image class="subimg" src="../../static/img/-.png" mode="" @click="subimgclick"></image>
+						<!-- <text class="bncls">购买时长</text> -->
+						<!-- <image class="subimg" src="../../static/img/-.png" mode="" @click="subimgclick"></image>
 						<text class="buttimecls">{{buytime}}</text>
-						<image class="addimg" src="../../static/img/+.png" mode="" @click="addimgclick"></image>
-						<text class="timeunit">月</text>
+						<image class="addimg" src="../../static/img/+.png" mode="" @click="addimgclick"></image> -->
+						<view class="uni-list buytimepicker">
+							<view class="uni-list-cell">
+								<view class="uni-list-cell-left">
+									购买时长
+								</view>
+								<view class="uni-list-cell-db">
+									<picker @change="bindPickerChange" :value="index" :range="array">
+										<view class="uni-input">{{buytime}}</view>
+									</picker>
+								</view>
+								<view class="uni-list-cell-left">
+									月
+								</view>
+							</view>
+						</view>
+						<!-- <text class="timeunit">月</text> -->
 					</view>
 					<view class="uni-form-item uni-column userknowbox">
 						<text class="userknow">用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知</text>
@@ -57,7 +87,9 @@
 				goodsCode: '',
 				idortel: '',
 				openid: '',
-				totalmny: 0
+				totalmny: 0,
+				array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+				applynumArray: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 			}
 		},
 		onLoad: function(e) {
@@ -114,6 +146,16 @@
 						return this.infoMap[k].goodsCode;
 					}
 				}
+			},
+			bindPickerChange: function(e) {
+				this.buytime = this.array[e.target.value];
+				this.totalmny = this.buytime * this.price * 0.01;
+			},
+			bindApplynumPickerChange: function(e) {
+				this.applynum = this.applynumArray[e.target.value];
+				this.price = this.getPrice(this.applynum + "");
+				this.goodsCode = this.getGoodsCode(this.applynum + "")
+				this.totalmny = this.buytime * this.price * 0.01;
 			},
 			subimgclick: function() {
 				if (this.buytime > 1) {

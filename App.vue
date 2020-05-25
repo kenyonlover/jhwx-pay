@@ -1,10 +1,5 @@
 <script>
 export default {
-	data() {
-		return {
-			imageURL: '../../static/img/背景.jpg'
-		};
-	},
 	onLaunch: function() {
 		console.log('App Launch');
 	},
@@ -21,8 +16,6 @@ export default {
 	@import "./common/uni.css";
 	page{
 		/* background: -webkit-gradient(linear, left top, right bottom, from(#958564), to(#958564),color-stop(50%,#d8ceb5)); */
-		/* backgroundImage: url(${imageURL}); */
-		/* backgroundRepeat: "no-repeat" */
 		background-image: url(static/img/背景.jpg);
 	}
 	uni-page-body{
@@ -122,6 +115,25 @@ export default {
 		height: 75rpx;
 		top: 300rpx;
 		left: 130rpx;
+	}
+	
+	.buytimepicker{
+		top: 40rpx;
+		width: 510rpx;
+		background: #8d7d5c;
+		/* border-radius: 10rpx; */
+		/* border: #8d7d5c; */
+		padding-left: 20rpx;
+		padding-right: 20rpx;
+		/* position: unset; */
+	}
+	
+	.applynumpicker{
+		top: 20rpx;
+		width: 510rpx;
+		background: #8d7d5c;
+		padding-left: 20rpx;
+		padding-right: 20rpx;
 	}
 	
 	
