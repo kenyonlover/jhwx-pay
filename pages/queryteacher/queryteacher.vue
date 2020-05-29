@@ -25,11 +25,14 @@
 	export default {
 		data() {
 			return {
-				openid: ''
+				
 			}
 		},
 		onLoad: function(e) {
-			this.openid = e.openid;
+			let wxopenid = this.getCookie('wxopenid');
+			if(wxopenid == undefined || wxopenid == '' || wxopenid.length == 0){
+				this.getWxCode(location.href);
+			}
 		},
 		methods: {
 			formSubmit: function(e) {
@@ -64,7 +67,7 @@
 						uni.hideLoading();
 						if (res && res.data && res.data.code === 0) {
 							uni.navigateTo({
-								url: '../buyteacher/buyteacher?id=' + formData.idortel + '&openid=' + this.openid
+								url: '../buyteacher/buyteacher?id=' + formData.idortel
 							});
 						} else {
 							uni.showToast({

@@ -30,7 +30,7 @@
 						</view>
 					</view>
 					<view class="uni-form-item uni-column userknowbox">
-						<text class="userknow">用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知</text>
+						<text class="userknow">{{userNeedKnow}}</text>
 					</view>
 					<view class="uni-form-item uni-column userknowbox">
 						<text class="moneytip">需支付金额：</text>
@@ -58,15 +58,23 @@
 				price: 0,
 				goodsCode: '',
 				idortel: '',
-				openid: '',
 				totalmny: 0,
 				array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 			}
 		},
 		onLoad: function(e) {
-			this.openid = e.openid;
+			let wxopenid = this.getCookie('wxopenid');
+			if(wxopenid == undefined || wxopenid == '' || wxopenid.length == 0){
+				this.getWxCode(location.href);
+			};
+			let masterid = e.id;
+			if(masterid == undefined || masterid == '' || masterid.length == 0){
+				uni.navigateTo({
+					url: '../querymaster/querymaster'
+				});
+			};
 			uni.request({
-				url: 'https://www.yitongkc.com/renren-fast/wx-api/goods/master/' + e.id,
+				url: 'https://www.yitongkc.com/renren-fast/wx-api/goods/master/' + masterid,
 				method: 'GET',
 				data: {},
 				success: res => {
@@ -99,9 +107,6 @@
 				this.totalmny = this.buytime * this.price * 0.01;
 			},
 			wechatpayclick: function() {
-				if (this.openid == undefined || this.openid == '' || this.openid.length == 0) {
-					window.location.replace(location.origin + location.pathname);
-				}
 				if (this.idortel == '' || this.idortel.length == 0) {
 					uni.showToast({
 						title: 'ID或者手机号不能为空，请填写',
@@ -117,7 +122,7 @@
 						"goodsCode": this.goodsCode,
 						"goodsCont": this.buytime,
 						"userKey": this.idortel,
-						"openId": this.openid
+						"openId": this.getCookie('wxopenid')
 					},
 					success: res => {
 						if (res.data.code === 0) {
@@ -203,37 +208,37 @@
 		color: #8d7d5c;
 		font-size: 20rpx;
 	}
-
+	
 	.moneytip {
 		position: relative;
-		top: 350rpx;
-		left: 130rpx;
+		top: 230rpx;
+		left: 110rpx;
 		color: #8d7d5c;
 		font-size: 30rpx;
 	}
-
+	
 	.moneynum {
 		position: relative;
 		width: 40rpx;
-		top: 350rpx;
-		left: 160rpx;
+		top: 230rpx;
+		left: 140rpx;
 		color: #8d7d5c;
 		font-size: 40rpx;
 		line-height: 40rpx;
 	}
-
+	
 	.moneyunit {
 		position: relative;
-		top: 350rpx;
-		left: 200rpx;
+		top: 230rpx;
+		left: 180rpx;
 		color: #8d7d5c;
 		font-size: 30rpx;
 	}
-
+	
 	.wechatpay {
 		width: 270rpx;
 		height: 75rpx;
-		top: 400rpx;
+		top: 280rpx;
 		left: 130rpx;
 	}
 </style>

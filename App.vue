@@ -102,8 +102,8 @@
 
 	.moneytip {
 		position: relative;
-		top: 250rpx;
-		left: 130rpx;
+		top: 130rpx;
+		left: 110rpx;
 		color: #8d7d5c;
 		font-size: 30rpx;
 	}
@@ -111,8 +111,8 @@
 	.moneynum {
 		position: relative;
 		width: 40rpx;
-		top: 250rpx;
-		left: 160rpx;
+		top: 130rpx;
+		left: 140rpx;
 		color: #8d7d5c;
 		font-size: 40rpx;
 		line-height: 40rpx;
@@ -120,8 +120,8 @@
 
 	.moneyunit {
 		position: relative;
-		top: 250rpx;
-		left: 200rpx;
+		top: 130rpx;
+		left: 180rpx;
 		color: #8d7d5c;
 		font-size: 30rpx;
 	}
@@ -129,7 +129,7 @@
 	.wechatpay {
 		width: 270rpx;
 		height: 75rpx;
-		top: 300rpx;
+		top: 180rpx;
 		left: 130rpx;
 	}
 

@@ -1,10 +1,11 @@
 {
-	"pages": [{
+	"pages": [
+		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationStyle": "custom"
 			}
-		},
+		}, 
 		{
 			"path": "pages/buydilatation/buydilatation",
 			"style": {
@@ -46,13 +47,14 @@
 				"navigationStyle": "custom",
 				"navigationBarTitleText": "购买老师卡"
 			}
-		}, {
-			"path": "pages/catalog/catalog",
+		}
+	    ,{
+            "path" : "pages/transfer/transfer",
 			"style": {
 				"navigationStyle": "custom"
 			}
-		}
-	],
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "京华象棋",

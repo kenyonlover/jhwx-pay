@@ -1,28 +1,60 @@
 <template>
 	<view>
-
+		<view class="uni-padding-wrap uni-common-mt">
+			<button class="btncls4" type="default" @click="master">查询大师卡</button>
+			<button class="btncls4" type="default" @click="teacher">查询老师卡</button>
+			<button class="btncls4" type="default" @click="dilatation">购买扩容卡</button>
+			<button class="btncls4" type="default" @click="carnival">购买嘉年华</button>
+		</view>
 	</view>
 </template>
 
 <script>
+	var wxConfig = require("../../common/wxConfig.js");
 	export default {
 		data() {
 			return {
-
+				
 			}
 		},
-		onLoad: function(option) { //option为object类型，会序列化上个页面传递的参数
-			let uri = location.origin + location.pathname + '#/pages/catalog/catalog';
-			let repUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + this.appId + '&redirect_uri=' + escape(
-				uri) + '&response_type=code&scope=snsapi_base&state=1#wechat_redirect';
-			window.location.replace(repUrl);
+		onLoad:function(e){
+			let wxopenid = this.getCookie('wxopenid');
+			if(wxopenid == undefined || wxopenid == '' || wxopenid.length == 0){
+				this.getWxCode(location.href);
+			}
 		},
 		methods: {
-
+			master: function(){
+				uni.navigateTo({
+					url: '../querymaster/querymaster'
+				});
+			},
+			teacher: function(){
+				uni.navigateTo({
+					url: '../queryteacher/queryteacher'
+				});
+			},
+			dilatation: function(){
+				uni.navigateTo({
+					url: '../buydilatation/buydilatation'
+				});
+			},
+			carnival: function(){
+				uni.navigateTo({
+					url: '../buycarnival/buycarnival'
+				});
+			}
 		}
+		
 	}
 </script>
 
 <style>
-
+.btncls4{
+	width: 70%;
+	top: 300rpx;
+	margin-top: 20rpx;
+	background-color: #958564;
+	color: #fff;
+}
 </style>

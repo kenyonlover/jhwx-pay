@@ -25,11 +25,14 @@
 	export default {
 		data() {
 			return {
-				openid: ''
+				
 			}
 		},
 		onLoad: function(e) {
-			this.openid = e.openid;
+			let wxopenid = this.getCookie('wxopenid');
+			if(wxopenid == undefined || wxopenid == '' || wxopenid.length == 0){
+				this.getWxCode(location.href);
+			}
 		},
 		methods: {
 			formSubmit: function(e) {
@@ -65,7 +68,7 @@
 						uni.hideLoading();
 						if (res && res.data && res.data.code === 0) {
 							uni.navigateTo({
-								url: '../buymaster/buymaster?id=' + formData.idortel + '&openid=' + this.openid
+								url: '../buymaster/buymaster?id=' + formData.idortel
 							});
 						} else {
 							uni.showToast({
@@ -84,47 +87,6 @@
 </script>
 
 <style>
-	/* page{
-		background: -webkit-gradient(linear, left top, right bottom, from(#958564), to(#958564),color-stop(50%,#d8ceb5));  
-	} */
-	/* .content{
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	} */
-	/* .topcard{
-		height: 220rpx;
-		width: 330rpx;
-		margin-top: 110rpx;
-		margin-left: auto;
-		margin-right: auto;
-		border-radius: 20rpx;
-	} */
-	/* .querybox{
-		height: 380rpx;
-		width: 650rpx;
-		margin-top: 110rpx;
-		margin-left: auto;
-		margin-right: auto;
-		border-radius: 20rpx;
-		background: #8d7d5c;
-	} */
-	/* .inlab{
-		margin-top: 50rpx;
-		margin-left: 50rpx;
-		font-size: 35rpx;
-		color: #D8CEB5;
-	}
-	input{
-		margin-top: 10rpx;
-		width: 510rpx;
-		background: #7e6d4f;
-		color: white;
-		border-radius: 10rpx;
-		padding-left: 20rpx;
-		padding-right: 20rpx;
-	} */
 	.subbtn {
 		top: 100rpx;
 		left: -20rpx;

@@ -47,7 +47,7 @@
 						</view>
 					</view>
 					<view class="uni-form-item uni-column userknowbox">
-						<text class="userknow">用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知</text>
+						<text class="userknow">{{userNeedKnow}}</text>
 					</view>
 					<view class="uni-form-item uni-column userknowbox">
 						<text class="moneytip">需支付金额：</text>
@@ -76,14 +76,16 @@
 				price: 0,
 				goodsCode: '',
 				idortel: '',
-				openid: '',
 				totalmny: 0,
 				array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
 				applynumArray: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 			}
 		},
 		onLoad: function(e) {
-			this.openid = e.openid;
+			let wxopenid = this.getCookie('wxopenid');
+			if(wxopenid == undefined || wxopenid == '' || wxopenid.length == 0){
+				this.getWxCode(location.href);
+			};
 			uni.request({
 				url: 'https://www.yitongkc.com/renren-fast/wx-api/goods/plusRoom',
 				method: 'GET',
@@ -137,9 +139,6 @@
 				this.totalmny = this.buytime * this.price * 0.01;
 			},
 			wechatpayclick: function() {
-				if (this.openid == undefined || this.openid == '' || this.openid.length == 0) {
-					window.location.replace(location.origin + location.pathname);
-				}
 				if (this.idortel == '' || this.idortel.length == 0) {
 					uni.showToast({
 						title: 'ID或者手机号不能为空，请填写',
@@ -155,7 +154,7 @@
 						"goodsCode": this.goodsCode,
 						"goodsCont": this.buytime,
 						"userKey": this.idortel,
-						"openId": this.openid
+						"openId": this.getCookie('wxopenid')
 					},
 					success: res => {
 						if (res.data.code === 0) {

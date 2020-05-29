@@ -13,7 +13,7 @@
 						<input class="uni-input inpid" v-model="idortel" />
 					</view>
 					<view class="uni-form-item uni-column userknowbox">
-						<text class="userknow">用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知用户须知</text>
+						<text class="userknow">{{userNeedKnow}}</text>
 					</view>
 					<view class="uni-form-item uni-column userknowbox">
 						<text class="moneytip">需支付金额：</text>
@@ -40,11 +40,13 @@
 				endtime: '',
 				goodsCode: '',
 				idortel: '',
-				openid: ''
 			}
 		},
 		onLoad: function(e) {
-			this.openid = e.openid;
+			let wxopenid = this.getCookie('wxopenid');
+			if(wxopenid == undefined || wxopenid == '' || wxopenid.length == 0){
+				this.getWxCode(location.href);
+			};
 			uni.request({
 				url: 'https://www.yitongkc.com/renren-fast/wx-api/goods/carnival',
 				method: 'GET',
@@ -74,16 +76,13 @@
 		},
 		methods: {
 			wechatpayclick: function() {
-				if (this.openid == undefined || this.openid == '' || this.openid.length == 0) {
-					window.location.replace(location.origin + location.pathname);
-				}
 				if (this.idortel == '' || this.idortel.length == 0) {
 					uni.showToast({
 						title: 'ID或者手机号不能为空，请填写',
 						icon: "none"
 					});
 					return
-				}
+				};
 
 				uni.request({
 					url: 'https://www.yitongkc.com/renren-fast/wx-api/payOrderGoodsJSAPI',
@@ -92,7 +91,7 @@
 						"goodsCode": this.goodsCode,
 						"goodsCont": 1,
 						"userKey": this.idortel,
-						"openId": this.openid
+						"openId": this.getCookie('wxopenid')
 					},
 					success: res => {
 						if (res.data.code === 0) {
@@ -196,8 +195,8 @@
 
 	.moneytip {
 		position: relative;
-		top: 440rpx;
-		left: 120rpx;
+		top: 320rpx;
+		left: 110rpx;
 		color: #8d7d5c;
 		font-size: 30rpx;
 	}
@@ -205,8 +204,8 @@
 	.moneynum {
 		position: relative;
 		width: 40rpx;
-		top: 440rpx;
-		left: 160rpx;
+		top: 320rpx;
+		left: 140rpx;
 		color: #8d7d5c;
 		font-size: 40rpx;
 		line-height: 40rpx;
@@ -214,8 +213,8 @@
 
 	.moneyunit {
 		position: relative;
-		top: 440rpx;
-		left: 200rpx;
+		top: 320rpx;
+		left: 180rpx;
 		color: #8d7d5c;
 		font-size: 30rpx;
 	}
@@ -223,7 +222,7 @@
 	.wechatpay {
 		width: 270rpx;
 		height: 75rpx;
-		top: 490rpx;
+		top: 370rpx;
 		left: 130rpx;
 	}
 </style>
